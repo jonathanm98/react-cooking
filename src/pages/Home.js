@@ -5,6 +5,7 @@ import Meal from "../components/Meal";
 const Home = () => {
   const [meals, setMeals] = useState([]);
   const [areas, setAreas] = useState([]);
+  const [areaFilter, setAreaFilter] = useState([]);
 
   const handleTextChange = (e) => {
     const text = e.target.value;
@@ -16,15 +17,19 @@ const Home = () => {
     axios
       .get("https://www.themealdb.com/api/json/v1/1/search.php?s=" + text)
       .then((res) => {
-        setMeals(res.data.meals);
-        res.data.meals
-          ? setAreas([...new Set(res.data.meals.map((meal) => meal.strArea))])
-          : setAreas([]);
+        setMeals(res.data.meals.filter((meal) => meal.strArea !== "Unknown"));
+        setAreas([
+          ...new Set(
+            res.data.meals
+              .map((meal) => meal.strArea)
+              .filter((area) => area !== "Unknown")
+          ),
+        ]);
       });
   };
 
   return (
-    <div>
+    <main>
       <div className="title">
         <h1>Recherchez une recette</h1>
       </div>
@@ -51,8 +56,14 @@ const Home = () => {
                       const elementClass = e.target.parentElement.classList;
                       if (elementClass.contains("active")) {
                         elementClass.remove("active");
+                        setAreaFilter(
+                          areaFilter.filter((item) => item !== area)
+                        );
+                        console.log(areaFilter);
                       } else {
                         elementClass.add("active");
+                        setAreaFilter([...areaFilter, area]);
+                        console.log(areaFilter);
                       }
                     }}
                   />
@@ -62,15 +73,35 @@ const Home = () => {
             })}
           </ul>
         )}
-        <input type="button" value="Reset filters" />
+        <input
+          type="button"
+          value="Reset filters"
+          onClick={() => {
+            setAreaFilter([]);
+            document.querySelectorAll(".country-radio-card").forEach((item) => {
+              item.classList.remove("active");
+            });
+          }}
+        />
       </div>
       <div className="recipe-cards-container">
-        <ul>
-          {meals &&
-            meals.map((meal) => <Meal key={meal.idMeal} recipe={meal} />)}
-        </ul>
+        {meals ? (
+          areaFilter[0] ? (
+            meals
+              .filter((meal) => areaFilter.includes(meal.strArea))
+              .map((meal) => {
+                return <Meal key={meal.idMeal} recipe={meal} />;
+              })
+          ) : (
+            meals.map((meal) => {
+              return <Meal key={meal.idMeal} recipe={meal} />;
+            })
+          )
+        ) : (
+          <h2>Aucune recette trouvée</h2>
+        )}
       </div>
-    </div>
+    </main>
   );
 };
 
