@@ -17,22 +17,26 @@ const Home = () => {
     axios
       .get("https://www.themealdb.com/api/json/v1/1/search.php?s=" + text)
       .then((res) => {
-        setMeals(res.data.meals.filter((meal) => meal.strArea !== "Unknown"));
-        setAreas([
-          ...new Set(
-            res.data.meals
-              .map((meal) => meal.strArea)
-              .filter((area) => area !== "Unknown")
-          ),
-        ]);
+        res.data.meals
+          ? setMeals(
+              res.data.meals.filter((meal) => meal.strArea !== "Unknown")
+            )
+          : setMeals([]);
+        res.data.meals
+          ? setAreas([
+              ...new Set(
+                res.data.meals
+                  .map((meal) => meal.strArea)
+                  .filter((area) => area !== "Unknown")
+              ),
+            ])
+          : setAreas([]);
       });
   };
 
   return (
     <main>
-      <div className="title">
-        <h1>Recherchez une recette</h1>
-      </div>
+      <h1>Recherchez une recette</h1>
       <div className="inputs-container">
         <input
           type="text"
@@ -42,47 +46,52 @@ const Home = () => {
           onChange={handleTextChange}
         />
         {areas && (
-          <ul className="country-radio-container">
-            {areas.map((area) => {
-              return (
-                <div className="country-radio-card">
-                  <input
-                    key={area}
-                    type="radio"
-                    name="countryRadio"
-                    id={area}
-                    value={area}
-                    onClick={(e) => {
-                      const elementClass = e.target.parentElement.classList;
-                      if (elementClass.contains("active")) {
-                        elementClass.remove("active");
-                        setAreaFilter(
-                          areaFilter.filter((item) => item !== area)
-                        );
-                        console.log(areaFilter);
-                      } else {
-                        elementClass.add("active");
-                        setAreaFilter([...areaFilter, area]);
-                        console.log(areaFilter);
-                      }
-                    }}
-                  />
-                  <label htmlFor={area}>{area}</label>
-                </div>
-              );
-            })}
-          </ul>
+          <div className="filter-container">
+            <ul className="country-radio">
+              {areas.map((area) => {
+                return (
+                  <div className="country-radio-element">
+                    <input
+                      key={area}
+                      type="radio"
+                      name="countryRadio"
+                      id={area}
+                      value={area}
+                      onClick={(e) => {
+                        const elementClass = e.target.parentElement.classList;
+                        if (elementClass.contains("active")) {
+                          elementClass.remove("active");
+                          setAreaFilter(
+                            areaFilter.filter((item) => item !== area)
+                          );
+                          console.log(areaFilter);
+                        } else {
+                          elementClass.add("active");
+                          setAreaFilter([...areaFilter, area]);
+                          console.log(areaFilter);
+                        }
+                      }}
+                    />
+                    <label htmlFor={area}>{area}</label>
+                  </div>
+                );
+              })}
+            </ul>
+            <input
+              type="button"
+              value="Reset filters"
+              className="reset-filters"
+              onClick={() => {
+                setAreaFilter([]);
+                document
+                  .querySelectorAll(".country-radio-card")
+                  .forEach((item) => {
+                    item.classList.remove("active");
+                  });
+              }}
+            />
+          </div>
         )}
-        <input
-          type="button"
-          value="Reset filters"
-          onClick={() => {
-            setAreaFilter([]);
-            document.querySelectorAll(".country-radio-card").forEach((item) => {
-              item.classList.remove("active");
-            });
-          }}
-        />
       </div>
       <div className="recipe-cards-container">
         {meals ? (
