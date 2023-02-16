@@ -36,22 +36,39 @@ const Home = () => {
           placeholder="Saisir aliment ou recette"
           onChange={handleTextChange}
         />
-        {areas &&
-          areas.map((area) => {
-            return (
-              <li>
-                <input
-                  key={area}
-                  type="radio"
-                  name="countryRadio"
-                  id={area}
-                  value={area}
-                />
-                <label htmlFor={area}>{area}</label>
-              </li>
-            );
-          })}
+        {areas && (
+          <ul className="country-radio-container">
+            {areas.map((area) => {
+              return (
+                <div className="country-radio-card">
+                  <input
+                    key={area}
+                    type="radio"
+                    name="countryRadio"
+                    id={area}
+                    value={area}
+                    onClick={(e) => {
+                      const elementClass = e.target.parentElement.classList;
+                      if (elementClass.contains("active")) {
+                        elementClass.remove("active");
+                      } else {
+                        elementClass.add("active");
+                      }
+                    }}
+                  />
+                  <label htmlFor={area}>{area}</label>
+                </div>
+              );
+            })}
+          </ul>
+        )}
         <input type="button" value="Reset filters" />
+      </div>
+      <div className="recipe-cards-container">
+        <ul>
+          {meals &&
+            meals.map((meal) => <Meal key={meal.idMeal} recipe={meal} />)}
+        </ul>
       </div>
     </div>
   );
