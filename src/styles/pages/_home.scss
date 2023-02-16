@@ -1,0 +1,67 @@
+@import "../variables";
+main {
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding: 20px 0;
+  }
+  .inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color-2;
+    padding: 15px 20px;
+    #meal-input {
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      padding: 5px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .filter-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 15px;
+      .country-radio {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: calc(100% + 20%);
+        .country-radio-element {
+          input {
+            display: none;
+          }
+          label {
+            padding: 5px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            background-color: $white;
+            // color: $white;
+          }
+          &.active {
+            label {
+              background-color: $color-1;
+              color: $white;
+            }
+          }
+        }
+      }
+      .reset-filters {
+        padding: 5px;
+        margin-top: 15px;
+        border: none;
+        // background-color: rgba($color: #000000, $alpha: 0);
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

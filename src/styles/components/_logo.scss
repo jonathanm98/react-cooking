@@ -1,0 +1,7 @@
+// header center
+@import "../variables";
+
+header {
+  @include verticalCenter;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}

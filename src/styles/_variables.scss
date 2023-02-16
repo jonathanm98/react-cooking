@@ -1,0 +1,16 @@
+@mixin verticalCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@font-face {
+  font-family: "LibraryRecordsRegular";
+  src: url(../assets/font/LibraryRecordsRegular-qZW66.ttf);
+}
+
+$font-1: "LibraryRecordsRegular", sans-serif;
+
+$color-1: #dd1f26;
+$color-2: #931e21;
+$color-3: #282c34;
+$white: rgb(243, 243, 243);

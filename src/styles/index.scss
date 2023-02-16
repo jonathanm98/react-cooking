@@ -1,17 +1,4 @@
-@use "settings";
-.country-radio-container {
-  display: flex;
-  flex-direction: row;
-  .country-radio-card {
-    margin-left: 10px;
-    &.active {
-      color: red;
-    }
-    input {
-      display: none;
-    }
-    label {
-      margin-left: 2px;
-    }
-  }
-}
+@use "./settings";
+@use "./components/logo";
+@use "./pages/home";
+@use "./components/meal";

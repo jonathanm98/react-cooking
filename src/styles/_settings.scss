@@ -1,31 +1,17 @@
-@mixin verticalCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-$font-1: sans-serif;
-
-$color-1: #dd1f26;
-$color-2: #931e21;
-$color-3: #282c34;
-$white: rgb(243, 243, 243);
-
+@import "variables";
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: $font-1;
+  font-weight: 100;
+  color: $color-3;
 }
 
 body {
   background: $white;
+  overflow: hidden;
 }
 li {
   list-style-type: none;
-}
-
-// header center
-header {
-  @include verticalCenter;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
