@@ -42,7 +42,7 @@ const Home = () => {
           type="text"
           name="meal-input"
           id="meal-input"
-          placeholder="Saisir aliment ou recette"
+          placeholder="Saisir une recette"
           onChange={handleTextChange}
         />
         {areas && (
