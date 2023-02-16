@@ -17,7 +17,7 @@ main {
     #meal-input {
       font-size: 1.2rem;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       padding: 5px;
 
       &:focus {
@@ -41,10 +41,9 @@ main {
           }
           label {
             padding: 5px;
-            border-radius: 10px;
+            border-radius: 2px;
             font-size: 1.2rem;
             background-color: $white;
-            // color: $white;
           }
           &.active {
             label {
@@ -55,6 +54,7 @@ main {
         }
       }
       .reset-filters {
+        border-radius: 8px;
         padding: 5px;
         margin-top: 15px;
         border: none;
