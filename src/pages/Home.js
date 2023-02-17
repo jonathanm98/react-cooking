@@ -5,10 +5,12 @@ import Meal from "../components/Meal";
 const Home = () => {
   const [meals, setMeals] = useState([]);
   const [areas, setAreas] = useState([]);
+  const [textInput, setTextInput] = useState(0);
   const [areaFilter, setAreaFilter] = useState([]);
 
   const handleTextChange = (e) => {
     const text = e.target.value;
+    setTextInput(text.length);
     if (!text) {
       setMeals([]);
       setAreas([]);
@@ -36,8 +38,8 @@ const Home = () => {
 
   return (
     <main>
-      <h1>Recherchez une recette</h1>
       <div className="inputs-container">
+        <h1>Recherchez une recette</h1>
         <input
           type="text"
           name="meal-input"
@@ -93,21 +95,25 @@ const Home = () => {
           </div>
         )}
       </div>
-      <div className="recipe-cards-container">
-        {meals ? (
-          areaFilter[0] ? (
-            meals
-              .filter((meal) => areaFilter.includes(meal.strArea))
-              .map((meal) => {
-                return <Meal key={meal.idMeal} recipe={meal} />;
-              })
-          ) : (
-            meals.map((meal) => {
-              return <Meal key={meal.idMeal} recipe={meal} />;
-            })
-          )
+      <div className="main-container">
+        {meals[0] ? (
+          <div className="recipe-cards-container">
+            {areaFilter[0]
+              ? meals
+                  .filter((meal) => areaFilter.includes(meal.strArea))
+                  .map((meal) => {
+                    return <Meal key={meal.idMeal} recipe={meal} />;
+                  })
+              : meals.map((meal) => {
+                  return <Meal key={meal.idMeal} recipe={meal} />;
+                })}
+          </div>
         ) : (
-          <h2>Aucune recette trouvée</h2>
+          <h2>
+            {textInput === 0
+              ? "Saisissez un nom de recette"
+              : "Aucune recette trouvee"}
+          </h2>
         )}
       </div>
     </main>
