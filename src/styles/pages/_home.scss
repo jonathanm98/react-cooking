@@ -31,6 +31,10 @@ main {
       justify-content: center;
       align-items: center;
       margin-top: 15px;
+      .filter-title {
+        color: $white;
+        margin-bottom: 10px;
+      }
       .country-radio {
         display: flex;
         justify-content: space-around;

@@ -49,6 +49,7 @@ const Home = () => {
         />
         {areas && (
           <div className="filter-container">
+            {meals[0] && <h3 className="filter-title">Filter by country</h3>}
             <ul className="country-radio">
               {areas.map((area) => {
                 return (
@@ -63,7 +64,6 @@ const Home = () => {
                           ".country-radio-element"
                         );
                         allElements.forEach((item) => {
-                          console.log(item.children[0].id);
                           if (item.children[0].id === e.target.id) {
                             if (item.classList.contains("active")) {
                               item.classList.remove("active");
