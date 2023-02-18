@@ -59,16 +59,23 @@ const Home = () => {
                       id={area}
                       value={area}
                       onClick={(e) => {
-                        const elementClass = e.target.parentElement.classList;
-                        if (elementClass.contains("active")) {
-                          elementClass.remove("active");
-                          setAreaFilter(
-                            areaFilter.filter((item) => item !== area)
-                          );
-                        } else {
-                          elementClass.add("active");
-                          setAreaFilter([...areaFilter, area]);
-                        }
+                        const allElements = document.querySelectorAll(
+                          ".country-radio-element"
+                        );
+                        allElements.forEach((item) => {
+                          console.log(item.children[0].id);
+                          if (item.children[0].id === e.target.id) {
+                            if (item.classList.contains("active")) {
+                              item.classList.remove("active");
+                              setAreaFilter([]);
+                              return;
+                            }
+                            item.classList.add("active");
+                            setAreaFilter([e.target.value]);
+                          } else {
+                            item.classList.remove("active");
+                          }
+                        });
                       }}
                     />
                     <label htmlFor={area}>{area}</label>
@@ -76,19 +83,6 @@ const Home = () => {
                 );
               })}
             </ul>
-            <input
-              type="button"
-              value="Reset filters"
-              className="reset-filters"
-              onClick={() => {
-                setAreaFilter([]);
-                document
-                  .querySelectorAll(".country-radio-card")
-                  .forEach((item) => {
-                    item.classList.remove("active");
-                  });
-              }}
-            />
           </div>
         )}
       </div>
