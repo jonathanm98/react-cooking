@@ -39,12 +39,12 @@ const Home = () => {
   return (
     <main>
       <div className="inputs-container">
-        <h1>Recherchez une recette</h1>
+        <h1>React Cook recipes</h1>
         <input
           type="text"
           name="meal-input"
           id="meal-input"
-          placeholder="Saisir une recette"
+          placeholder="Enter a recipe name"
           onChange={handleTextChange}
         />
         {areas && (
@@ -52,9 +52,8 @@ const Home = () => {
             <ul className="country-radio">
               {areas.map((area) => {
                 return (
-                  <div className="country-radio-element">
+                  <div key={area} className="country-radio-element">
                     <input
-                      key={area}
                       type="radio"
                       name="countryRadio"
                       id={area}
@@ -66,11 +65,9 @@ const Home = () => {
                           setAreaFilter(
                             areaFilter.filter((item) => item !== area)
                           );
-                          console.log(areaFilter);
                         } else {
                           elementClass.add("active");
                           setAreaFilter([...areaFilter, area]);
-                          console.log(areaFilter);
                         }
                       }}
                     />
@@ -110,9 +107,7 @@ const Home = () => {
           </div>
         ) : (
           <h2>
-            {textInput === 0
-              ? "Saisissez un nom de recette"
-              : "Aucune recette trouvee"}
+            {textInput === 0 ? "Make your first search" : "No recipe found"}
           </h2>
         )}
       </div>
