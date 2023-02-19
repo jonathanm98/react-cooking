@@ -1,21 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Meal from "../components/Meal";
+import Recipe from "../components/Recipe";
 
 const Home = () => {
   const [meals, setMeals] = useState([]);
   const [areas, setAreas] = useState([]);
   const [textInput, setTextInput] = useState(0);
   const [areaFilter, setAreaFilter] = useState([]);
-  function obtenirLargeurFenetre() {
-    const largeurFenetre = window.innerWidth;
-    console.log(
-      "La largeur de la fenêtre est de : " + largeurFenetre + " pixels"
-    );
-  }
 
-  // Ajouter un écouteur d'événements pour surveiller les changements de taille de la fenêtre
-  window.addEventListener("resize", obtenirLargeurFenetre);
+  const [activeMeal, setActiveMeal] = useState({});
 
   const handleTextChange = (e) => {
     const text = e.target.value;
@@ -45,8 +39,22 @@ const Home = () => {
       });
   };
 
+  useEffect(() => {
+    const allCards = document.querySelectorAll(".meal-card");
+    for (let i = 0; i < allCards.length; i++) {
+      allCards[i].addEventListener("click", (e) => {
+        const id = e.currentTarget.id;
+        const meal = meals.find((meal) => meal.idMeal === id);
+        setActiveMeal(meal);
+      });
+    }
+  }, [meals]);
+
   return (
     <main>
+      <div className="recipe-main-container">
+        <Recipe meal={activeMeal} />
+      </div>
       <div className="inputs-container">
         <h1>React Cook recipes</h1>
         <input
