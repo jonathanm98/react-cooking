@@ -22,7 +22,7 @@ main {
       padding: 5px;
 
       &:focus {
-        outline: none;
+        outline: 2px solid $color-3;
       }
     }
     .filter-container {
@@ -39,8 +39,11 @@ main {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        flex-wrap: wrap;
         width: calc(100% + 20%);
         .country-radio-element {
+          user-select: none;
+          margin-bottom: 18px;
           input {
             display: none;
           }
@@ -53,9 +56,11 @@ main {
           }
           &.active {
             label {
-              background-color: $color-1;
+              background-color: $color-2;
               color: $white;
-              box-shadow: 0 0 5px 0px $color-3;
+              border-radius: 8px;
+              border: 2px solid $color-1;
+              // box-shadow: 0 0 5px 0px $color-3;
             }
           }
         }
