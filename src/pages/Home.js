@@ -10,10 +10,22 @@ const Home = () => {
   const [areaFilter, setAreaFilter] = useState([]);
 
   const [activeMeal, setActiveMeal] = useState({});
+  const removeActiveMeal = () => {
+    setActiveMeal({});
+  };
+  function isObjectEmpty(obj) {
+    return Object.keys(obj).length === 0 ? false : true;
+  }
 
   const handleTextChange = (e) => {
     const text = e.target.value;
     setTextInput(text.length);
+
+    setAreaFilter([]);
+    const allElements = document.querySelectorAll(".country-radio-element");
+    allElements.forEach((item) => {
+      item.classList.remove("active");
+    });
     if (!text) {
       setMeals([]);
       setAreas([]);
@@ -48,14 +60,17 @@ const Home = () => {
         setActiveMeal(meal);
       });
     }
-  }, [meals]);
+  }, [meals, activeMeal]);
 
   return (
     <main>
-      <div className="recipe-main-container">
-        <Recipe meal={activeMeal} />
-      </div>
-      <div className="inputs-container">
+      <div
+        className={
+          !isObjectEmpty(activeMeal)
+            ? "inputs-container"
+            : "inputs-container disabled"
+        }
+      >
         <h1>React Cook recipes</h1>
         <input
           type="text"
@@ -103,25 +118,29 @@ const Home = () => {
           </div>
         )}
       </div>
-      <div className="main-container">
-        {meals[0] ? (
-          <div className="recipe-cards-container">
-            {areaFilter[0]
-              ? meals
-                  .filter((meal) => areaFilter.includes(meal.strArea))
-                  .map((meal) => {
+      {meals[0] ? (
+        !isObjectEmpty(activeMeal) ? (
+          <div className="main-container">
+            <div className="recipe-cards-container">
+              {areaFilter[0]
+                ? meals
+                    .filter((meal) => areaFilter.includes(meal.strArea))
+                    .map((meal) => {
+                      return <Meal key={meal.idMeal} recipe={meal} />;
+                    })
+                : meals.map((meal) => {
                     return <Meal key={meal.idMeal} recipe={meal} />;
-                  })
-              : meals.map((meal) => {
-                  return <Meal key={meal.idMeal} recipe={meal} />;
-                })}
+                  })}
+            </div>
           </div>
         ) : (
-          <h2 className="error-h2">
-            {textInput === 0 ? "Make your first search" : "No recipe found"}
-          </h2>
-        )}
-      </div>
+          <Recipe removeMeal={removeActiveMeal} meal={activeMeal} />
+        )
+      ) : (
+        <h2 className="error-h2">
+          {textInput === 0 ? "Make your first search" : "No recipe found"}
+        </h2>
+      )}
     </main>
   );
 };

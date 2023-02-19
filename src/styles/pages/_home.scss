@@ -9,12 +9,16 @@ main {
     color: $white;
   }
   .inputs-container {
+    z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: $color-2;
     padding: 15px 20px;
+    &.disabled {
+      display: none;
+    }
     #meal-input {
       font-size: 1.2rem;
       border: none;
@@ -78,6 +82,9 @@ main {
         font-size: 1.2rem;
       }
     }
+  }
+  .main-container {
+    z-index: 2;
   }
   .error-h2 {
     display: flex;
