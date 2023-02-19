@@ -40,7 +40,7 @@ main {
         justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
-        width: calc(100% + 20%);
+        gap: 5px;
         .country-radio-element {
           user-select: none;
           margin-bottom: 18px;
@@ -74,5 +74,13 @@ main {
         font-size: 1.2rem;
       }
     }
+  }
+  .error-h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: $color-3;
+    margin: 20px 0;
   }
 }

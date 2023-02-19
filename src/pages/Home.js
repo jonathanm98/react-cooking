@@ -7,6 +7,15 @@ const Home = () => {
   const [areas, setAreas] = useState([]);
   const [textInput, setTextInput] = useState(0);
   const [areaFilter, setAreaFilter] = useState([]);
+  function obtenirLargeurFenetre() {
+    const largeurFenetre = window.innerWidth;
+    console.log(
+      "La largeur de la fenêtre est de : " + largeurFenetre + " pixels"
+    );
+  }
+
+  // Ajouter un écouteur d'événements pour surveiller les changements de taille de la fenêtre
+  window.addEventListener("resize", obtenirLargeurFenetre);
 
   const handleTextChange = (e) => {
     const text = e.target.value;
@@ -100,7 +109,7 @@ const Home = () => {
                 })}
           </div>
         ) : (
-          <h2>
+          <h2 className="error-h2">
             {textInput === 0 ? "Make your first search" : "No recipe found"}
           </h2>
         )}

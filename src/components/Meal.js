@@ -1,7 +1,6 @@
 import React from "react";
 
 const Meal = ({ recipe }) => {
-  console.log(recipe);
   return (
     <div className="meal-card">
       <img src={recipe.strMealThumb} alt={recipe.strMeal} />
