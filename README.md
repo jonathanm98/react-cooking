@@ -1,1 +1,1 @@
-## 1.Afficher le composant de recette
+## Adresse du site fonctionelle : https://jonathanm98.github.io/cooking-app/
