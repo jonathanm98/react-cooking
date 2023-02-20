@@ -3,14 +3,11 @@
   justify-content: center;
   align-items: center;
 }
-@font-face {
-  font-family: "MondayFeelings";
-  src: url(../assets/font/MondayFeelings-7BD2l.ttf);
-}
 
-$font-1: "MondayFeelings", sans-serif;
+$font-1: "Pacifico", sans-serif;
+$font-2: "Quicksand", sans-serif;
 
-$color-1: #b52d2f;
+$color-1: #bd272b;
 $color-2: #931e21;
 $color-3: #282c34;
 $white: rgb(243, 243, 243);

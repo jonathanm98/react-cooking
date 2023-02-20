@@ -81,7 +81,7 @@ const Home = () => {
         />
         {areas && (
           <div className="filter-container">
-            {meals[0] && <h3 className="filter-title">Filter by country</h3>}
+            {meals[0] && <h3 className="filter-title">Filter by country :</h3>}
             <ul className="country-radio">
               {areas.map((area) => {
                 return (
@@ -137,9 +137,9 @@ const Home = () => {
           <Recipe removeMeal={removeActiveMeal} meal={activeMeal} />
         )
       ) : (
-        <h2 className="error-h2">
-          {textInput === 0 ? "Make your first search" : "No recipe found"}
-        </h2>
+        <h3 className="error-h3">
+          {textInput === 0 ? "Make your first search !" : "No recipe found..."}
+        </h3>
       )}
     </main>
   );
