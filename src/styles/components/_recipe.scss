@@ -2,13 +2,10 @@
 .recipe-main-container {
   position: relative;
   width: 100%;
-  height: 100vh;
+  // height: 100vh;
   .recipe-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0 auto;
+    position: relative;
+    margin: 50px auto;
     padding: 20px;
     width: 80%;
     border: 5px solid $color-1;
@@ -62,5 +59,54 @@
 
   &.active {
     display: flex;
+  }
+  @media (max-width: 1220px) {
+    .recipe-container {
+      width: 90%;
+      .recipe-infos {
+        margin-right: 20%;
+      }
+    }
+  }
+  @media (max-width: 940px) {
+    .recipe-container {
+      width: 95%;
+      .recipe-infos {
+        margin-right: 10%;
+      }
+    }
+  }
+  @media (max-width: 880px) {
+    .recipe-container {
+      width: 96%;
+      .recipe-infos {
+        margin-right: 8%;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .recipe-container {
+      padding-top: 80px;
+      .close-btn {
+        p {
+          display: none;
+        }
+      }
+      .recipe-infos {
+        margin-right: 2%;
+        img {
+          width: 200px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    .recipe-container {
+      .recipe-infos {
+        flex-direction: column;
+        margin-right: 0;
+      }
+    }
   }
 }
