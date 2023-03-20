@@ -3,7 +3,7 @@ import React from "react";
 const Logo = () => {
   return (
     <header>
-      <img src="./img/logo.png" alt="" />
+      <img src={`${process.env.PUBLIC_URL}/img/logo.png`} alt="Logo" />
     </header>
   );
 };

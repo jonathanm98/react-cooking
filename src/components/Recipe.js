@@ -16,7 +16,7 @@ const Recipe = ({ meal, removeMeal }) => {
       <div className="recipe-container">
         <button className="close-btn" onClick={removeMeal}>
           <p>Close</p>
-          <img src="./img/xmark-solid.svg" alt="" />
+          <img src={`${process.env.PUBLIC_URL}/img/xmark-solid.svg`} alt="" />
         </button>
         <div className="recipe-infos">
           <img src={meal.strMealThumb} alt={meal.strMeal} />
