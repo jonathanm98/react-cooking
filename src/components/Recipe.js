@@ -10,7 +10,6 @@ const Recipe = ({ meal, removeMeal }) => {
       ingredientsValues.push(`${ingredient} - ${measure}`);
     }
   }
-  console.log(ingredientsValues);
   return (
     <div className="recipe-main-container">
       <div className="recipe-container">
