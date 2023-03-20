@@ -51,16 +51,9 @@ const Home = () => {
       });
   };
 
-  useEffect(() => {
-    const allCards = document.querySelectorAll(".meal-card");
-    for (let i = 0; i < allCards.length; i++) {
-      allCards[i].addEventListener("click", (e) => {
-        const id = e.currentTarget.id;
-        const meal = meals.find((meal) => meal.idMeal === id);
-        setActiveMeal(meal);
-      });
-    }
-  }, [meals, activeMeal]);
+  const handleCardClick = (meal) => {
+    setActiveMeal(meal);
+  };
 
   return (
     <main>
@@ -126,10 +119,22 @@ const Home = () => {
                 ? meals
                     .filter((meal) => areaFilter.includes(meal.strArea))
                     .map((meal) => {
-                      return <Meal key={meal.idMeal} recipe={meal} />;
+                      return (
+                        <Meal
+                          key={meal.idMeal}
+                          recipe={meal}
+                          handleCardClick={handleCardClick}
+                        />
+                      );
                     })
                 : meals.map((meal) => {
-                    return <Meal key={meal.idMeal} recipe={meal} />;
+                    return (
+                      <Meal
+                        key={meal.idMeal}
+                        recipe={meal}
+                        handleCardClick={handleCardClick}
+                      />
+                    );
                   })}
             </div>
           </div>
