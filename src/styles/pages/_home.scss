@@ -67,9 +67,11 @@ main {
               // box-shadow: 0 0 5px 0px $color-3;
             }
           }
-          &:hover {
-            transition: 0.15s;
-            transform: scale(1.1);
+          @media (hover: hover) {
+            &:hover {
+              transition: 0.15s;
+              transform: scale(1.1);
+            }
           }
         }
       }
